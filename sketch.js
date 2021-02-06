@@ -6,13 +6,14 @@ function setup() {
 }
 let s = 0;
 let h = 60;
-let step = 0;
+let count = 0;
+let criclesB = [10, 25, 30, 33, 44, 50, 53];
 function draw() {
   background(255);
   fill("red");
   stroke(255);
   s = s + 3;
-  step = step + 1;
+  count = count + 0.01;
   for (let i = 0; i < 50; i++) {
     rect(100 * i, windowHeight - 50, 100, 30);
   }
@@ -21,9 +22,13 @@ function draw() {
     s = windowHeight - h;
   }
 
-  circle(100, s, 20);
+  if (count > 10) {
+    count = 0;
+  }
 
-  //circle(150, s, 20);
+  for (let x = 0; x < criclesB.length; x++) {
+    circle(criclesB[x], 10, 20);
+  }
 }
 
 // This Redraws the Canvas when resized
