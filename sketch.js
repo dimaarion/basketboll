@@ -1,32 +1,45 @@
 /* eslint-disable no-undef, no-unused-vars */
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  // Put setup code here
-}
 let s = 0;
 let h = 60;
 let count = 0;
-let criclesB = [10, 25, 30, 33, 44, 50, 53];
+let criclesB = [10, 125, 30, 33, 144, 50, 53];
+let cdr = [];
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  for (let j = 0; j < 100; j++) {
+    cdr[j] = random(10, windowWidth - 10);
+  }
+  // Put setup code here
+}
+
 function draw() {
   background(255);
   fill("red");
   stroke(255);
-  s = s + 3;
-  count = count + 0.001;
-  for (let i = 0; i < 50; i++) {
-    rect(100 * i, windowHeight - 50, 100, 30);
+  s = s + 8;
+  if (s > windowHeight - 60) {
+    s = 0;
+    count = count + 1;
   }
-  cricleses(0);
-  // console.log(count);
+
+  pole(windowHeight);
+
+  cricleses(count);
 }
 
 function cricleses(x) {
-  if (s > windowHeight - 60) {
-    s = windowHeight - 60;
-  }
   fill("green");
-  circle(criclesB[x], s, 20);
+  circle(cdr[x], s, 20);
+}
+
+function pole(w) {
+  for (let i = 0; i < 50; i++) {
+    rect(100 * i, w - 50, 100, 30);
+  }
+}
+
+function basket() {
+  fill("blue");
 }
 // This Redraws the Canvas when resized
 windowResized = function () {
