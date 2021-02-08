@@ -78,6 +78,8 @@ function basket(hw) {
   circle(30 + speed, hw - 60, 20);
   circle(125 + speed, hw - 60, 20);
 }
+
+function colize() {}
 // This Redraws the Canvas when resized
 windowResized = function () {
   resizeCanvas(windowWidth, windowHeight);
