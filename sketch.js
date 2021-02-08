@@ -39,8 +39,8 @@ function draw() {
     speed = windowWidth - stopW;
   }
   pole(windowHeight);
-  cricleses(count);
-  basket(windowHeight, 100, 50, 30, 30);
+  cricleses(cdr, count);
+  basket(windowHeight);
 }
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
@@ -49,9 +49,9 @@ function keyPressed() {
     value = 2;
   }
 }
-function cricleses(x) {
+function cricleses(arr, x) {
   fill("green");
-  circle(cdr[x], s, 20);
+  circle(arr[x], s, 20);
 }
 
 function pole(w) {
