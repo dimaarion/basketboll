@@ -60,7 +60,11 @@ function pole(w) {
   }
 }
 
-function basket(hw, w, h, kw, kh) {
+function basket(hw) {
+  let w = 100;
+  let h = 50;
+  let kw = 30;
+  let kh = 30;
   fill("blue");
   rect(10 + speed, hw - 110, w, h);
   noStroke();
