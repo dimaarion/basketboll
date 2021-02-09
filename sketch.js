@@ -18,7 +18,7 @@ function setup() {
 function draw() {
   let stopW = 150;
   let speedP = 5 + levels;
-  let speedH = 1 + levels;
+  let speedH = 3 + levels;
   background(255);
   fill("red");
   stroke(255);
@@ -27,6 +27,7 @@ function draw() {
     s = 0;
     count = count + 1;
   }
+  bumCircles(s, windowHeight);
 
   if (value === 2) {
     speed = speed + speedP;
@@ -42,12 +43,7 @@ function draw() {
   pole(windowHeight);
   cricleses(cdr, count);
   basket(windowHeight);
-
-  rezultTextBascet(
-    colize(cdr[count], speed, s, windowHeight, count),
-    windowWidth,
-    cdr
-  );
+  rezultTextBascet(colize(cdr[count], speed, s, windowHeight, count));
 }
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
@@ -86,11 +82,9 @@ function basket(hw) {
   circle(125 + speed, hw - 60, 20);
 }
 
-function colize(hY, kX, hX, windH, countH) {
+function colize(hY, kX, hX, windH) {
   let kXMax = kX + 150;
   let hYc = round(hY);
-  let arrH = [];
-
   if (hYc > kX && hYc < kXMax && hX > windH - 110) {
     return true;
   } else {
@@ -98,12 +92,43 @@ function colize(hY, kX, hX, windH, countH) {
   }
 }
 
-function rezultTextBascet(x, w, sd) {
-  if (x > 0) {
-    textAlign(CENTER);
-    textSize(50);
-    text(" " + x + " ", w / 2, 100);
+function rezultTextBascet(x, bumC) {
+  let cri = 60;
+  let criR = 50;
+  let criX = 43;
+  let criY = 70;
+
+  if (x === true) {
+    for (let j = 0; j < 100; j++) {
+      cdr[j] = random(10, windowWidth - 10);
+    }
+    s = 0;
+    basketInH = basketInH + 1;
+  } else {
   }
+
+  for (let i = 0; i < basketInH; i++) {
+    fill(119, 221, 231);
+    circle(cri + cri * i, cri, criR);
+    textSize(30);
+    fill("red");
+    if (i > 8) {
+      text(" " + (i + 1) + " ", criX - 9 + cri * i, criY);
+    } else {
+      text(" " + (i + 1) + " ", criX + cri * i, criY);
+    }
+  }
+}
+
+function bumCircles(sv, h) {
+  if (sv > h - 160) {
+    fill("red");
+  } else {
+    fill("green");
+  }
+  circle(10, 60, 200);
+
+  // console.log(hY);
 }
 // This Redraws the Canvas when resized
 windowResized = function () {
