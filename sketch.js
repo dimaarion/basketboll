@@ -2,7 +2,6 @@
 let s = 0;
 let h = 60;
 let count = 0;
-let criclesB = [10, 125, 30, 33, 144, 50, 53];
 let cdr = [];
 let value = 0;
 let speed = 0;
@@ -17,8 +16,8 @@ function setup() {
 
 function draw() {
   let stopW = 150;
-  let speedP = 3 + levels;
-  let speedH = 2 + levels;
+  let speedP = 5 + levels;
+  let speedH = 1 + levels;
   background(255);
   fill("red");
   stroke(255);
@@ -41,6 +40,7 @@ function draw() {
   pole(windowHeight);
   cricleses(cdr, count);
   basket(windowHeight);
+  colize(cdr[count], speed);
 }
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
@@ -79,7 +79,11 @@ function basket(hw) {
   circle(125 + speed, hw - 60, 20);
 }
 
-function colize() {}
+function colize(hY, kX) {
+  if (hY > kX) {
+    console.log(round(hY) + "/" + kX);
+  }
+}
 // This Redraws the Canvas when resized
 windowResized = function () {
   resizeCanvas(windowWidth, windowHeight);
