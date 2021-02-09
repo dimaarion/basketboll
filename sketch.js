@@ -6,6 +6,7 @@ let cdr = [];
 let value = 0;
 let speed = 0;
 let levels = 0;
+let basketInH = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   for (let j = 0; j < 100; j++) {
@@ -26,6 +27,7 @@ function draw() {
     s = 0;
     count = count + 1;
   }
+
   if (value === 2) {
     speed = speed + speedP;
   } else if (value === 1) {
@@ -40,7 +42,12 @@ function draw() {
   pole(windowHeight);
   cricleses(cdr, count);
   basket(windowHeight);
-  colize(cdr[count], speed);
+
+  rezultTextBascet(
+    colize(cdr[count], speed, s, windowHeight, count),
+    windowWidth,
+    cdr
+  );
 }
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
@@ -79,9 +86,23 @@ function basket(hw) {
   circle(125 + speed, hw - 60, 20);
 }
 
-function colize(hY, kX) {
-  if (hY > kX) {
-    console.log(round(hY) + "/" + kX);
+function colize(hY, kX, hX, windH, countH) {
+  let kXMax = kX + 150;
+  let hYc = round(hY);
+  let arrH = [];
+
+  if (hYc > kX && hYc < kXMax && hX > windH - 110) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function rezultTextBascet(x, w, sd) {
+  if (x > 0) {
+    textAlign(CENTER);
+    textSize(50);
+    text(" " + x + " ", w / 2, 100);
   }
 }
 // This Redraws the Canvas when resized
