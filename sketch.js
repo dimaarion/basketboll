@@ -7,10 +7,24 @@ let value = 0;
 let speed = 0;
 let levels = 0;
 let basketInH = 0;
+let b = 0;
+let basketShar = [{}];
+let speedShar, sharX, sharY;
+let counrShar = 0;
+var hit = false;
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  for (let j = 0; j < 100; j++) {
+  for (let j = 0; j < windowWidth; j++) {
     cdr[j] = random(10, windowWidth - 10);
+    basketShar[j] = {
+      colorShar1: random(0, 255),
+      colorShar2: random(0, 255),
+      colorShar3: random(0, 255),
+      sharX: random(10, windowWidth - 10),
+      sharY: 0,
+      radShar: 30,
+      speedShar: 1
+    };
   }
   // Put setup code here
 }
@@ -22,16 +36,18 @@ function draw() {
   background(255);
   fill("red");
   stroke(255);
-  s = s + speedH;
-  if (s > windowHeight - 60) {
+
+  //basketShar[0].speedShar += basketShar[0].speedShar;
+  s = s + 1 * 5;
+  if (s > windowHeight - basketShar[0].radShar) {
     s = 0;
     count = count + 1;
   }
-  bumCircles(s, windowHeight);
 
   if (value === 2) {
     speed = speed + speedP;
-  } else if (value === 1) {
+  }
+  if (value === 1) {
     speed = speed - speedP;
   }
   if (speed < 0) {
@@ -41,9 +57,40 @@ function draw() {
     speed = windowWidth - stopW;
   }
   pole(windowHeight);
-  cricleses(cdr, count);
+
+  for (let i = 0; i < count; i++) {
+    counrShari += 1;
+    basketShar[i].sharY += basketShar[i].speedShar;
+
+    if (basketShar[i].sharY > windowHeight - basketShar[i].radShar - 30) {
+      basketShar[i].sharY += -1;
+    }
+
+    fill(
+      basketShar[i].colorShar1,
+      basketShar[i].colorShar2,
+      basketShar[i].colorShar3
+    );
+    circle(basketShar[i].sharX, basketShar[i].sharY, basketShar[i].radShar);
+    hit = collideRectCircle(
+      0,
+      windowHeight - 50,
+      windowWidth,
+      50,
+      basketShar[i].sharX,
+      basketShar[i].sharY,
+      basketShar[i].radShar
+    );
+    if (hit) {
+      fill("blue");
+      rect(100, 100, 100, 100);
+    }
+  }
+
+  // cricleses(cdr, count);
   basket(windowHeight);
-  rezultTextBascet(colize(cdr[count], speed, s, windowHeight, count));
+  //rezultTextBascet(colize(cdr[count], speed, s, windowHeight, count));
+  //bumCircles(cdr, count, windowHeight, windowWidth);
 }
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
@@ -59,6 +106,7 @@ function cricleses(arr, x) {
 
 function pole(w) {
   for (let i = 0; i < 50; i++) {
+    fill("green");
     rect(100 * i, w - 50, 100, 30);
   }
 }
@@ -120,16 +168,14 @@ function rezultTextBascet(x, bumC) {
   }
 }
 
-function bumCircles(sv, h) {
-  if (sv > h - 160) {
-    fill("red");
-  } else {
-    fill("green");
+function bumCircles(sv, c, h, w) {
+  b = b + 1;
+  fill("green");
+  for (let i = 0; i < 10; i++) {
+    //circle(sv[c - 1], h - (60 + b), 10);
   }
-  circle(10, 60, 200);
-
-  // console.log(hY);
 }
+
 // This Redraws the Canvas when resized
 windowResized = function () {
   resizeCanvas(windowWidth, windowHeight);
