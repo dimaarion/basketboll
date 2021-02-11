@@ -31,14 +31,14 @@ function setup() {
 
 function draw() {
   let stopW = 150;
-  let speedP = 5 + levels;
+  let speedP = 3 + levels;
   let speedH = 3 + levels;
   background(255);
   fill("red");
   stroke(255);
 
   //basketShar[0].speedShar += basketShar[0].speedShar;
-  s = s + 1 * 5;
+  s = s + 8;
   if (s > windowHeight - basketShar[0].radShar) {
     s = 0;
     count = count + 1;
@@ -59,19 +59,14 @@ function draw() {
   pole(windowHeight);
 
   for (let i = 0; i < count; i++) {
-    counrShari += 1;
     basketShar[i].sharY += basketShar[i].speedShar;
-
-    if (basketShar[i].sharY > windowHeight - basketShar[i].radShar - 30) {
-      basketShar[i].sharY += -1;
-    }
-
     fill(
       basketShar[i].colorShar1,
       basketShar[i].colorShar2,
       basketShar[i].colorShar3
     );
     circle(basketShar[i].sharX, basketShar[i].sharY, basketShar[i].radShar);
+
     hit = collideRectCircle(
       0,
       windowHeight - 50,
@@ -81,9 +76,51 @@ function draw() {
       basketShar[i].sharY,
       basketShar[i].radShar
     );
+    hit2 = collideRectCircle(
+      110 + speed,
+      windowHeight - 90,
+      30,
+      30,
+      basketShar[i].sharX,
+      basketShar[i].sharY,
+      basketShar[i].radShar
+    );
+    hitL = collideLineCircle(
+      15 + speed,
+      windowHeight - 110,
+      101 + speed,
+      windowHeight - 110,
+      basketShar[i].sharX,
+      basketShar[i].sharY,
+      basketShar[i].radShar
+    );
+    hitL2 = collideLineCircle(
+      5 + speed,
+      windowHeight - 120,
+      18 + speed,
+      windowHeight - 105,
+      basketShar[i].sharX,
+      basketShar[i].sharY,
+      basketShar[i].radShar
+    );
     if (hit) {
-      fill("blue");
-      rect(100, 100, 100, 100);
+      //circle(basketShar[i].sharX, (basketShar[i].sharY *= -1), 100);
+      basketShar[i].sharY += -1;
+    }
+    if (hit2) {
+      basketShar[i].sharY -= 150;
+    }
+    if (hitL || hitL2) {
+      basketShar[i].sharX = 60 + speed;
+      basketShar[i].sharY = windowHeight - 120;
+      basketShar[i].radShar = 30 + i;
+      if (i > 0) {
+        //basketShar[i - 1].sharX = 50 + speed;
+      }
+      if (i > 1) {
+        //basketShar[i - 2].sharX = 80 + speed;
+        // basketShar[i].sharY = windowHeight - 120;
+      }
     }
   }
 
@@ -123,11 +160,18 @@ function basket(hw) {
   rect(w + 10 + speed, hw - 105, 20, 20);
   fill(225);
   rect(w + 12 + speed, hw - 103, 16, 13);
-
   fill(210);
   stroke("green");
   circle(30 + speed, hw - 60, 20);
   circle(125 + speed, hw - 60, 20);
+
+  stroke("blue");
+  strokeWeight(10);
+  line(5 + speed, hw - 120, 18 + speed, hw - 105);
+  line(112 + speed, hw - 120, 101 + speed, hw - 105);
+  line(125 + speed, hw - 120, 112 + speed, hw - 120);
+  line(15 + speed, hw - 110, 101 + speed, hw - 110);
+  strokeWeight(1);
 }
 
 function colize(hY, kX, hX, windH) {
