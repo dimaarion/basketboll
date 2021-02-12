@@ -75,6 +75,13 @@ const basketGame = {
     rectY: 50,
     rectHeight: 30
   },
+  countSharCar(s) {
+    fill("green");
+    circle(60, 60, 60, 60);
+    fill(255);
+    textSize(40);
+    text("" + s + "", 50, 73);
+  },
   pole(height, width) {
     fill("green");
     rect(
@@ -123,8 +130,10 @@ const basketGame = {
     let hit2 = false;
     let hitL = false;
     let hitL2 = false;
+    let hitL3 = false;
     let hitC = false;
     let hitC1 = false;
+    let sCr = 0;
     let speed = this.sittens.keyboard.boardPressLeftRight.speed.min;
     for (let i = 0; i < this.sittens.speedKadr.count.min; i++) {
       this.basketShar[i].sharY += this.basketShar[i].speedShar;
@@ -175,6 +184,15 @@ const basketGame = {
         this.basketShar[i].sharY,
         this.basketShar[i].radShar
       );
+      hitL3 = collideLineCircle(
+        this.basketCar.body.line2X + speed,
+        height - this.basketCar.body.line2Y,
+        this.basketCar.body.line2aX + speed,
+        height - this.basketCar.body.line2aY,
+        this.basketShar[i].sharX,
+        this.basketShar[i].sharY,
+        this.basketShar[i].radShar
+      );
       hitC = collideCircleCircle(
         this.basketShar[i].sharX,
         this.basketShar[i].sharY,
@@ -186,15 +204,20 @@ const basketGame = {
       if (hit) {
         this.basketShar[i].sharY += -1;
       }
+
       if (hit2 || hitC) {
         this.basketShar[i].sharY -= 100;
       }
-      if (hitL || hitL2) {
+      if (hitL || hitL2 || hitL3) {
+        sCr = sCr + 1;
         this.basketShar[i].sharX = 60 + speed;
         this.basketShar[i].sharY = height - 120;
-        this.basketShar[i].radShar = 30 + i;
+        if (i < 57) {
+          this.basketShar[i].radShar = 30 + i;
+        }
       }
     }
+    this.countSharCar(sCr);
   },
   basket(height, speed) {
     fill("blue");
@@ -247,10 +270,10 @@ const basketGame = {
       height - this.basketCar.body.line1aY
     );
     line(
-      this.basketCar.body.line1X + speed,
-      height - this.basketCar.body.line1Y,
-      this.basketCar.body.line1aX + speed,
-      height - this.basketCar.body.line1aY
+      this.basketCar.body.line2X + speed,
+      height - this.basketCar.body.line2Y,
+      this.basketCar.body.line2aX + speed,
+      height - this.basketCar.body.line2aY
     );
     line(
       this.basketCar.body.line3X + speed,
