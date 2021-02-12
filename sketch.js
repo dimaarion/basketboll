@@ -75,6 +75,14 @@ const basketGame = {
     rectY: 50,
     rectHeight: 30
   },
+  oblaka: {
+    oblako() {
+      noStroke();
+      circle(200, 200, 100, 100);
+      circle(230, 210, 100, 100);
+      circle(300, 200, 100, 100);
+    }
+  },
   countSharCar(s) {
     let x = 50;
     fill("green");
@@ -299,6 +307,14 @@ const basketGame = {
       height - this.basketCar.body.line4aY
     );
     strokeWeight(1);
+  },
+  display(height, width) {
+    this.oblaka.oblako();
+    this.startGame(height);
+    this.controlGame(width);
+    this.pole(height, width);
+    this.controlShar(height, width);
+    this.basket(height, this.sittens.keyboard.boardPressLeftRight.speed.min);
   }
 };
 function setup() {
@@ -324,14 +340,7 @@ function draw() {
   background(255);
   fill("red");
   stroke(255);
-  basketGame.startGame(windowHeight);
-  basketGame.controlGame(windowWidth);
-  basketGame.pole(windowHeight, windowWidth);
-  basketGame.controlShar(windowHeight, windowWidth);
-  basketGame.basket(
-    windowHeight,
-    basketGame.sittens.keyboard.boardPressLeftRight.speed.min
-  );
+  basketGame.display(windowHeight, windowWidth);
 }
 
 function keyPressed() {
