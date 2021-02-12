@@ -76,19 +76,33 @@ const basketGame = {
     rectHeight: 30
   },
   oblaka: {
-    oblako() {
+    oblako(x, y, r) {
       noStroke();
-      circle(200, 200, 100, 100);
-      circle(230, 180, 100, 100);
-      circle(270, 170, 100, 100);
-      circle(300, 200, 100, 100);
-      rect(180, 201, 190, 49, 40, 40);
+      fill(0, 255, 255);
+      circle(x, y, r - 100);
+      circle(x + 30, y - 20, r - 100);
+      circle(x + 70, y - 30, r - 100);
+      circle(x + 100, y, r - 100);
+      rect(x - 20, y + 1, r - 10, r - 151, r - 60);
+    }
+  },
+  sun(width) {
+    fill("Yellow");
+    circle(width - 250, 200, 300);
+  },
+  controller: {
+    arrCount(count) {
+      let c = [];
+      for (let i = 0; i < count; i++) {
+        c[i] = i;
+      }
+      return c;
     }
   },
   countSharCar(s) {
     let x = 50;
     fill("green");
-    circle(60, 60, 100, 100);
+    circle(60, 60, 100);
     fill(255);
     textSize(40);
     if (s > 9) {
@@ -311,12 +325,15 @@ const basketGame = {
     strokeWeight(1);
   },
   display(height, width) {
-    this.oblaka.oblako();
     this.startGame(height);
     this.controlGame(width);
     this.pole(height, width);
     this.controlShar(height, width);
     this.basket(height, this.sittens.keyboard.boardPressLeftRight.speed.min);
+    this.controller
+      .arrCount(7)
+      .map((x) => this.oblaka.oblako(300 * x + 200, 100, 200));
+    this.sun(width);
   }
 };
 function setup() {
