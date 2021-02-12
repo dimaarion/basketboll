@@ -4,14 +4,14 @@ const basketGame = {
   sittens: {
     speedKadr: {
       min: 0,
-      max: 8,
-      count: { min: 0, max: 1 }
+      max: 2,
+      count: { min: 0, max: 1, sterShar: 0 }
     },
     keyboard: {
       boardPressLeftRight: {
         speed: {
           min: 0,
-          max: 3
+          max: 8
         },
         value: 0
       }
@@ -76,11 +76,18 @@ const basketGame = {
     rectHeight: 30
   },
   countSharCar(s) {
+    let x = 50;
     fill("green");
-    circle(60, 60, 60, 60);
+    circle(60, 60, 100, 100);
     fill(255);
     textSize(40);
-    text("" + s + "", 50, 73);
+    if (s > 9) {
+      x = 38;
+    }
+    if (s > 99) {
+      x = 25;
+    }
+    text("" + s + "", x, 73);
   },
   pole(height, width) {
     fill("green");
@@ -124,6 +131,9 @@ const basketGame = {
       this.sittens.keyboard.boardPressLeftRight.speed.min =
         width - this.sittens.windowGame.right;
     }
+    if (this.sittens.speedKadr.count.min > 200) {
+      noLoop();
+    }
   },
   controlShar(height, width) {
     let hit = false;
@@ -134,6 +144,7 @@ const basketGame = {
     let hitC = false;
     let hitC1 = false;
     let sCr = 0;
+
     let speed = this.sittens.keyboard.boardPressLeftRight.speed.min;
     for (let i = 0; i < this.sittens.speedKadr.count.min; i++) {
       this.basketShar[i].sharY += this.basketShar[i].speedShar;
@@ -204,17 +215,17 @@ const basketGame = {
       if (hit) {
         this.basketShar[i].sharY += -1;
       }
-
-      if (hit2 || hitC) {
-        this.basketShar[i].sharY -= 100;
+      if (hitC) {
+        this.basketShar[i].sharX -= 1;
+      }
+      if (hit2) {
+        this.basketShar[i].sharX += 1;
       }
       if (hitL || hitL2 || hitL3) {
         sCr = sCr + 1;
         this.basketShar[i].sharX = 60 + speed;
-        this.basketShar[i].sharY = height - 120;
-        if (i < 57) {
-          this.basketShar[i].radShar = 30 + i;
-        }
+        this.basketShar[i].sharY = height - 110;
+        this.basketShar[i].radShar = 30 + i / 5;
       }
     }
     this.countSharCar(sCr);
@@ -295,7 +306,7 @@ function setup() {
     windowWidth - basketGame.sittens.windowGame.rightPanel,
     windowHeight
   );
-  for (let j = 0; j < windowWidth; j++) {
+  for (let j = 0; j < 250; j++) {
     basketGame.basketShar[j] = {
       colorShar1: random(0, 255),
       colorShar2: random(0, 255),
@@ -328,6 +339,13 @@ function keyPressed() {
     basketGame.sittens.keyboard.boardPressLeftRight.value = 1;
   } else if (keyCode === RIGHT_ARROW) {
     basketGame.sittens.keyboard.boardPressLeftRight.value = 2;
+  }
+}
+function keyReleased() {
+  if (keyCode === LEFT_ARROW) {
+    basketGame.sittens.keyboard.boardPressLeftRight.value = 0;
+  } else if (keyCode === RIGHT_ARROW) {
+    basketGame.sittens.keyboard.boardPressLeftRight.value = 0;
   }
 }
 
