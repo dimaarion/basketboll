@@ -79,8 +79,10 @@ const basketGame = {
     oblako() {
       noStroke();
       circle(200, 200, 100, 100);
-      circle(230, 210, 100, 100);
+      circle(230, 180, 100, 100);
+      circle(270, 170, 100, 100);
       circle(300, 200, 100, 100);
+      rect(180, 201, 190, 49, 40, 40);
     }
   },
   countSharCar(s) {
