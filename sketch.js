@@ -177,8 +177,8 @@ const basketGame = {
     line(width - 377, 200, width - 123, 200);
     line(width - 250, 74, width - 250, 328);
     strokeWeight(10);
-    point(200, 410);
-    point(100, 110);
+    this.controller.arrCount();
+    point(width - 400, 190);
     fill("green");
   },
   controller: {
