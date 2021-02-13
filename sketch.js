@@ -1,5 +1,4 @@
 /* eslint-disable no-undef, no-unused-vars */
-
 const basketGame = {
   sittens: {
     speedKadr: {
@@ -87,8 +86,100 @@ const basketGame = {
     }
   },
   sun(width) {
-    fill("Yellow");
-    circle(width - 250, 200, 300);
+    fill(255);
+    stroke(0);
+
+    rect(width - 378, 72, 256);
+    circle(width - 250, 200, 250);
+    bezier(
+      width - 362,
+      192,
+      width - 300,
+      230,
+      width - 230,
+      235,
+      width - 180,
+      210
+    );
+    bezier(
+      width - 355,
+      185,
+      width - 362,
+      190,
+      width - 362,
+      190,
+      width - 365,
+      199
+    );
+    bezier(
+      width - 188,
+      200,
+      width - 180,
+      210,
+      width - 180,
+      210,
+      width - 178,
+      220
+    );
+    bezier(
+      width - 310,
+      139,
+      width - 295,
+      130,
+      width - 285,
+      130,
+      width - 270,
+      139
+    );
+    bezier(
+      width - 312,
+      125,
+      width - 298,
+      110,
+      width - 285,
+      110,
+      width - 275,
+      118
+    );
+    bezier(
+      width - 235,
+      145,
+      width - 230,
+      145,
+      width - 216,
+      140,
+      width - 200,
+      165
+    );
+    bezier(
+      width - 228,
+      125,
+      width - 220,
+      125,
+      width - 200,
+      130,
+      width - 190,
+      150
+    );
+    bezier(
+      width - 400,
+      190,
+      width - 500,
+      200,
+      width - 500,
+      200,
+      width - 400,
+      210
+    );
+
+    line(width - 377, 328, width - 123, 74);
+    line(width - 377, 74, width - 123, 328);
+    line(width - 377, 200, width - 123, 200);
+    line(width - 250, 74, width - 250, 328);
+    strokeWeight(10);
+    point(200, 410);
+    point(100, 110);
+    fill("green");
   },
   controller: {
     arrCount(count) {
