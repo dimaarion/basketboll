@@ -88,8 +88,7 @@ const basketGame = {
   sun(width) {
     fill(255);
     stroke(0);
-
-    rect(width - 378, 72, 256);
+    // rect(width - 378, 72, 256);
     circle(width - 250, 200, 250);
     bezier(
       width - 362,
@@ -161,24 +160,29 @@ const basketGame = {
       width - 190,
       150
     );
-    bezier(
-      width - 400,
-      190,
-      width - 500,
-      200,
-      width - 500,
-      200,
-      width - 400,
-      210
-    );
 
     line(width - 377, 328, width - 123, 74);
     line(width - 377, 74, width - 123, 328);
     line(width - 377, 200, width - 123, 200);
     line(width - 250, 74, width - 250, 328);
-    strokeWeight(10);
-    this.controller.arrCount();
-    point(width - 400, 190);
+    function luchi(controller, width) {
+      bezier(
+        width - 450,
+        200,
+        width - 370,
+        225,
+        width - 370,
+        225,
+        width - 450,
+        280
+      );
+
+      /*
+      triangle(width - 385, 245, width - 350, 300, width - 450, 360);
+      triangle(width - 350, 300, width - 310, 325, width - 380, 390);
+      triangle(width - 310, 325, width - 260, 335, width - 290, 390);*/
+    }
+    luchi(this.controller, width);
     fill("green");
   },
   controller: {
