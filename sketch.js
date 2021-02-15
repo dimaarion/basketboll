@@ -162,10 +162,10 @@ const basketGame = {
       150
     );
 
-    line(width - 377, 328, width - 123, 74);
+    /* line(width - 377, 328, width - 123, 74);
     line(width - 377, 74, width - 123, 328);
     line(width - 377, 200, width - 123, 200);
-    line(width - 250, 74, width - 250, 328);
+    line(width - 250, 74, width - 250, 328);*/
     function luchi(controller, width) {
       bezier(
         width - 450,
@@ -194,9 +194,111 @@ const basketGame = {
         300,
         width - 347,
         300,
-        width - 400,
-        350
+        width - 380,
+        390
       );
+      bezier(
+        width - 380,
+        390,
+        width - 280,
+        328,
+        width - 280,
+        328,
+        width - 260,
+        400
+      );
+      bezier(
+        width - 260,
+        400,
+        width - 230,
+        332,
+        width - 230,
+        332,
+        width - 160,
+        450
+      );
+      bezier(
+        width - 260,
+        400,
+        width - 230,
+        332,
+        width - 230,
+        332,
+        width - 160,
+        450
+      );
+      bezier(
+        width - 160,
+        450,
+        width - 200,
+        310,
+        width - 200,
+        310,
+        width - 100,
+        380
+      );
+      bezier(
+        width - 100,
+        380,
+        width - 154,
+        280,
+        width - 154,
+        280,
+        width - 50,
+        300
+      );
+      bezier(
+        width - 50,
+        300,
+        width - 128,
+        230,
+        width - 128,
+        230,
+        width - 0,
+        200
+      );
+      bezier(
+        width - 0,
+        200,
+        width - 120,
+        180,
+        width - 120,
+        180,
+        width - 70,
+        130
+      );
+      bezier(
+        width - 70,
+        130,
+        width - 135,
+        130,
+        width - 135,
+        130,
+        width - 70,
+        75
+      );
+      bezier(
+        width - 70,
+        75,
+        width - 159,
+        110,
+        width - 159,
+        110,
+        width - 100,
+        10
+      );
+      bezier(
+        width - 100,
+        10,
+        width - 189,
+        88,
+        width - 189,
+        88,
+        width - 180,
+        10
+      );
+      bezier(width - 180, 10, width - 220, 70, width - 220, 70, width - 240, 0);
+      bezier(width - 240, 0, width - 260, 66, width - 260, 66, width - 300, 0);
       /*
       triangle(width - 385, 245, width - 350, 300, width - 450, 360);
       triangle(width - 350, 300, width - 310, 325, width - 380, 390);
