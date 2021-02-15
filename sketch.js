@@ -88,6 +88,7 @@ const basketGame = {
   sun(width) {
     fill(255);
     stroke(0);
+    circle(width - 250, 200, 300);
     // rect(width - 378, 72, 256);
     circle(width - 250, 200, 250);
     bezier(
@@ -169,14 +170,33 @@ const basketGame = {
       bezier(
         width - 450,
         200,
-        width - 370,
+        width - 381,
         225,
-        width - 370,
+        width - 381,
         225,
         width - 450,
         280
       );
-
+      bezier(
+        width - 450,
+        280,
+        width - 377,
+        255,
+        width - 377,
+        255,
+        width - 400,
+        300
+      );
+      bezier(
+        width - 400,
+        300,
+        width - 347,
+        300,
+        width - 347,
+        300,
+        width - 400,
+        350
+      );
       /*
       triangle(width - 385, 245, width - 350, 300, width - 450, 360);
       triangle(width - 350, 300, width - 310, 325, width - 380, 390);
