@@ -88,9 +88,11 @@ const basketGame = {
   sun(width) {
     fill(255);
     stroke(0);
-    circle(width - 250, 200, 300);
-    // rect(width - 378, 72, 256);
     circle(width - 250, 200, 250);
+    push();
+    noStroke();
+    circle(width - 250, 200, 560);
+    pop();
     bezier(
       width - 362,
       192,
@@ -167,29 +169,38 @@ const basketGame = {
     line(width - 377, 200, width - 123, 200);
     line(width - 250, 74, width - 250, 328);*/
     function luchi(controller, width) {
+      let lx1 = 450,
+        ly1 = 200,
+        lx2 = 450,
+        ly2 = 280,
+        lx3 = 400,
+        ly3 = 300;
+
+      strokeWeight(10);
+      stroke(255, 255, 0);
       bezier(
-        width - 450,
-        200,
+        width - lx1,
+        ly1,
         width - 381,
         225,
         width - 381,
         225,
-        width - 450,
-        280
+        width - lx2,
+        ly2
       );
       bezier(
-        width - 450,
-        280,
+        width - lx2,
+        ly2,
         width - 377,
         255,
         width - 377,
         255,
-        width - 400,
-        300
+        width - lx3,
+        ly3
       );
       bezier(
-        width - 400,
-        300,
+        width - lx3,
+        ly3,
         width - 347,
         300,
         width - 347,
@@ -297,15 +308,50 @@ const basketGame = {
         width - 180,
         10
       );
+
       bezier(width - 180, 10, width - 220, 70, width - 220, 70, width - 240, 0);
       bezier(width - 240, 0, width - 260, 66, width - 260, 66, width - 300, 0);
+      bezier(width - 300, 0, width - 300, 80, width - 300, 80, width - 400, 10);
+      bezier(
+        width - 400,
+        10,
+        width - 335,
+        120,
+        width - 335,
+        120,
+        width - 480,
+        40
+      );
+      bezier(
+        width - 480,
+        40,
+        width - 360,
+        160,
+        width - 360,
+        160,
+        width - 460,
+        130
+      );
+      bezier(
+        width - 460,
+        130,
+        width - 380,
+        180,
+        width - 380,
+        180,
+        width - lx1,
+        ly1
+      );
+
       /*
       triangle(width - 385, 245, width - 350, 300, width - 450, 360);
       triangle(width - 350, 300, width - 310, 325, width - 380, 390);
       triangle(width - 310, 325, width - 260, 335, width - 290, 390);*/
     }
+    push();
     luchi(this.controller, width);
     fill("green");
+    pop();
   },
   controller: {
     arrCount(count) {
